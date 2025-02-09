@@ -144,7 +144,7 @@ default_args = {
 dag = DAG(
     'log_consumer_pipeline',
     default_args = default_args,
-    description='Generate and produce synthetic logs',
+    description='Consume and Index synthetic logs',
     schedule_interval='*/5 * * * *',
     start_date=datetime(year = 2025, month = 2, day = 8),
     catchup=False,
@@ -152,9 +152,9 @@ dag = DAG(
 )
 
 consume_logs_task = PythonOperator(
-    task_id = 'generate_and_produce_logs', 
+    task_id = 'generate_and_consume_logs', 
     python_callable=consume_and_index_logs,
     dag = dag
 )
 
-consume_and_index_logs()
+# consume_and_index_logs()

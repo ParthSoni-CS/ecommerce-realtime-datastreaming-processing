@@ -100,21 +100,21 @@ default_args = {
     'retries_delay': timedelta(seconds = 5)
 }
 
-# dag = DAG(
-#     'log_generation_pipeline',
-#     default_args = default_args,
-#     description='Generate and produce synthetic logs',
-#     schedule_interval='*/5 * * * *',
-#     start_date=datetime(year = 2025, month = 2, day = 8),
-#     catchup=False,
-#     tags = ['logs', 'kafka', 'production']
-# )
+dag = DAG(
+    'log_generation_pipeline',
+    default_args = default_args,
+    description='Generate and produce synthetic logs',
+    schedule_interval='*/5 * * * *',
+    start_date=datetime(year = 2025, month = 2, day = 8),
+    catchup=False,
+    tags = ['logs', 'kafka', 'production']
+)
 
-# produce_logs_task = PythonOperator(
-#     task_id = 'generate_and_produce_logs', 
-#     python_callable=produce_logs,
-#     dag = dag
-# )
+produce_logs_task = PythonOperator(
+    task_id = 'generate_and_produce_logs', 
+    python_callable=produce_logs,
+    dag = dag
+)
 
-produce_logs()
+# produce_logs()
 
